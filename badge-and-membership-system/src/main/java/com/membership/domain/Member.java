@@ -43,7 +43,7 @@ public class Member {
 									inverseJoinColumns = {@JoinColumn(name="badge_id")})	
 	private Set<Badge> badges;
 	
-	@OneToMany()
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "member_role", joinColumns = {@JoinColumn(name="member_id")},
 									inverseJoinColumns = {@JoinColumn(name="role_id")})
 	private Set<Role> roles;

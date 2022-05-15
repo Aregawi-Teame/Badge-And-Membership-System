@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,5 +27,9 @@ public class Location {
 
     @Enumerated(EnumType.STRING)
     private LocationType locationType;
+
+    @OneToMany
+    @JoinColumn(name = "location_id")
+    private List<TimeSlot> timeSlots;
 
 }

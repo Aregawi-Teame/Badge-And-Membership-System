@@ -1,28 +1,47 @@
 package com.membership.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.util.Objects;
+
 @Entity
-@Getter @Setter @NoArgsConstructor @EqualsAndHashCode
+@Getter
+@Setter
+@NoArgsConstructor
 public class Role {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@EqualsAndHashCode.Exclude
-	private Long id;
-	@Column(name="role_type")
-	private String roleType;
-	public Role(String roleType) {
-		super();
-		this.roleType = roleType;
-	}
-	
+    @Id
+    @GeneratedValue
+	private int id;
+    private String name;
+
+    public Role(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Role)) return false;
+        Role role = (Role) o;
+        return getId() == role.getId() && getName().equals(role.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName());
+    }
 }

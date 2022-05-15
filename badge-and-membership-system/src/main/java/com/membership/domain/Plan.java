@@ -20,7 +20,7 @@ public class Plan {
     private String name;
     private String description;
     private boolean isLimited;
-    private int limit;
+    private int qouta;
     @OneToMany
     @JoinTable(name="plan_role",
             joinColumns = {@JoinColumn(name="Plan_id")},
@@ -33,7 +33,7 @@ public class Plan {
         this.name = name;
         this.description = description;
         this.isLimited = isLimited;
-        this.limit = limit;
+        this.qouta = limit;
         this.roles = roles;
     }
 
@@ -44,7 +44,7 @@ public class Plan {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", isLimited=" + isLimited +
-                ", limit=" + limit +
+                ", limit=" + qouta +
                 ", roles=" + roles +
                 '}';
     }
@@ -54,11 +54,11 @@ public class Plan {
         if (this == o) return true;
         if (!(o instanceof Plan)) return false;
         Plan plan = (Plan) o;
-        return getId() == plan.getId() && isLimited() == plan.isLimited() && getLimit() == plan.getLimit() && getName().equals(plan.getName()) && getDescription().equals(plan.getDescription()) && getRoles().equals(plan.getRoles());
+        return getId() == plan.getId() && isLimited() == plan.isLimited() && getQouta() == plan.getQouta() && getName().equals(plan.getName()) && getDescription().equals(plan.getDescription()) && getRoles().equals(plan.getRoles());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getDescription(), isLimited(), getLimit(), getRoles());
+        return Objects.hash(getId(), getName(), getDescription(), isLimited(), getQouta(), getRoles());
     }
 }

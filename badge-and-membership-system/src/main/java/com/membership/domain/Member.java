@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,7 +42,7 @@ public class Member {
 									inverseJoinColumns = {@JoinColumn(name="badge_id")})	
 	private Set<Badge> badges;
 	
-	@OneToMany
+	@OneToMany()
 	@JoinTable(name = "member_role", joinColumns = {@JoinColumn(name="member_id")},
 									inverseJoinColumns = {@JoinColumn(name="role_id")})
 	private Set<Role> roles;

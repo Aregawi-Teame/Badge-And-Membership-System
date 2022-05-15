@@ -39,50 +39,33 @@ public class MemberController {
 	}
 	
 	@PatchMapping("/{id}/badges")
-	public String addBadge(@PathVariable(name="id") String id, @RequestBody Badge badge) {
+	public Member addMemberBadge(@PathVariable(name="id") String id, @RequestBody Badge badge) {
 		Long memberId = Long.parseLong(id);
-		Member member = memberService.findById(memberId);
-		member.addBadge(badge);
-		memberService.save(member);	
-		return "Badge Added Successfully!";
+		return memberService.addMemberBadge(memberId, badge);
 	}
 	
 	@GetMapping("/{id}/badges")
-	public Set<Badge> findAllBadges(@PathVariable(name="id") String id){
+	public Set<Badge> findAllMemberBadges(@PathVariable(name="id") String id){
 		Long memberId = Long.parseLong(id);
-		Member member = memberService.findById(memberId);
-		return member.getBadges();
+		return memberService.findAllMemberBadges(memberId);
 	}
 	
 	@GetMapping("/{id}/roles")
-	public Set<Role> findAllRole(@PathVariable(name="id") String id){
+	public Set<Role> findAllMemberRoles(@PathVariable(name="id") String id){
 		Long memberId = Long.parseLong(id);
-		Member member = memberService.findById(memberId);
-		return member.getRoles();
+		return memberService.findAllMemberRoles(memberId);
 	}
 	
 	@PatchMapping("/{id}/roles")
-	public String addRole(@PathVariable(name="id") String id, @RequestBody String roleId) {
+	public Member addMemberRole(@PathVariable(name="id") String id, @RequestBody String roleId) {
 		Long memberId = Long.parseLong(id);
-		Member member = memberService.findById(memberId);
-		
-		// this will update soon
-		
-		member.addRole(null);
-		memberService.save(member);
-		
-		return "Role Added Successfully!";
+		return memberService.addMemberRole(memberId, memberId);
 	}
 	
 	@PutMapping("/{id}")
-	public String updateMember(@PathVariable(name="id") String id, @RequestBody Member updatedMember) {
+	public Member updateMember(@PathVariable(name="id") String id, @RequestBody Member updatedMember) {
 		Long memberId = Long.parseLong(id);
-		Member oldMember = memberService.findById(memberId);
-		if(updatedMember.getFirstName()!=null) oldMember.setFirstName(updatedMember.getFirstName());
-		if(updatedMember.getLastName()!=null) oldMember.setLastName(updatedMember.getLastName());
-		if(updatedMember.getEmail()!=null) oldMember.setEmail(updatedMember.getEmail());
-		memberService.save(oldMember);
-		return "Successfully updated";
+		return memberService.updateMember(memberId, updatedMember);
 	}
 	
 }

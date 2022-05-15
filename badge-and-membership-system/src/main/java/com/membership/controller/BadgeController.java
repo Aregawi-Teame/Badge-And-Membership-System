@@ -27,14 +27,9 @@ public class BadgeController {
 	}
 	
 	@PutMapping("/{id}")
-	public String updateBadge(@PathVariable(name="id") String id, @RequestBody Badge updatedBadge ) {
+	public Badge updateBadge(@PathVariable(name="id") String id, @RequestBody Badge updatedBadge ) {
 		Long badgeId = Long.parseLong(id);
-		Badge oldBadge = badgeService.findById(badgeId);
-		if(updatedBadge.getIssueDate()!=null) oldBadge.setIssueDate(updatedBadge.getIssueDate());
-		if(updatedBadge.getExpirationDate()!=null) oldBadge.setExpirationDate(updatedBadge.getExpirationDate());
-		oldBadge.setActive(updatedBadge.isActive());
-		badgeService.save(oldBadge);
-		return "Updated Successfully";
+		return badgeService.update(badgeId, updatedBadge);
 	}
 	
 	@GetMapping("/{id}")
@@ -46,6 +41,6 @@ public class BadgeController {
 	@GetMapping("/{id}/member")
 	public Member findBadgeMember(@PathVariable(name="id") String id) {
 		Long badgeId = Long.parseLong(id);
-		return badgeService.findById(badgeId).getMember();
+		return badgeService.findBadgeMember(badgeId);
 	}
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.membership.domain.Badge;
+import com.membership.domain.Member;
 import com.membership.repository.BadgeRepository;
 
 @Service
@@ -28,6 +29,23 @@ public class BadgeServiceImpl implements BadgeService {
 	@Override
 	public Badge save(Badge badge) {
 		return badgeRepository.save(badge);
+	}
+	
+	@Override
+	public Badge update(Long badgeId, Badge updatedBadge) {
+		Badge oldBadge = findById(badgeId);
+		if(updatedBadge.getIssueDate()!=null) oldBadge.setIssueDate(updatedBadge.getIssueDate());
+		if(updatedBadge.getExpirationDate()!=null) oldBadge.setExpirationDate(updatedBadge.getExpirationDate());
+		oldBadge.setActive(updatedBadge.isActive());
+		
+		save(oldBadge);
+		
+		return oldBadge;
+	}
+
+	@Override
+	public Member findBadgeMember(Long badgeId) {
+		return findById(badgeId).getMember();
 	}
 
 }

@@ -61,21 +61,32 @@ public class BadgeServiceImpl implements BadgeService {
 
 	@Override
 	public boolean isAuthorized(Long badgeId, Long locationId) {
-		List<Object> objects = badgeRepository.findBadgeMemberMembershipPlanByBadgeIdAndBarcodeReaderLocationId(badgeId, locationId);
-		Badge badge = (Badge)objects.get(0);
-		Member member = (Member)objects.get(1);
-		Membership membership = (Membership)objects.get(2);
-		Plan plan = (Plan)objects.get(3);
+		Badge badge = findById(badgeId);
+		Member member = badge.getMember();
+		Membership membership = member.getMemberships()
+				.stream()
+				.filter(membersh->membersh.getLocation().getLocationId()==locationId)
+				.findFirst()
+				.get();
+		
 		if(badge==null || member==null || membership==null) return false; // Not authorized
 		if(!badge.isActive() || badge.getExpirationDate().isBefore(LocalDate.now())) return false; // Not authorized
 		if(membership.getEndDate().isBefore(LocalDate.now())) return false; //Membersip is expired
-		Location location = (Location)objects.get(4); // or this can be location of the machine reader
+		
+		Plan plan = membership.getPlan();
+		Location location = membership.getLocation();
+		
 		Integer dayOfTheWeek =  LocalDate.now().getDayOfWeek().getValue();
-		List<TimeSlot> dayTimeSlot = location.getTimeSlots().stream().filter(s-> s.getDayOfWeek().valueOfTheDay()==dayOfTheWeek).toList();
+		List<TimeSlot> dayTimeSlot = location.getTimeSlots()
+				.stream()
+				.filter(s-> s.getDayOfWeek().valueOfTheDay()==dayOfTheWeek)
+				.toList();
+		
+		LocalTime currentTime = LocalTime.now();
 		TimeSlot timeSlot = dayTimeSlot.stream()
 										.filter(s->s.getStartTime()
-											.isAfter(LocalTime.now()) && s.getEndTime()
-												.isBefore(LocalTime.now()))
+											.isAfter(currentTime) && s.getEndTime()
+											.isBefore(currentTime))
 										.findFirst()
 										.get();
 		if(timeSlot==null) return false; // this means out of time or not opened yet;

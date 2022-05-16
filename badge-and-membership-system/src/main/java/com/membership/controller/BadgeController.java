@@ -45,7 +45,7 @@ public class BadgeController {
 //	}
 //	
 	@GetMapping("/swipe")
-	public boolean isAuthorized(@RequestParam(name="badgeId") Long badgeId,@RequestParam(name="locationId") Long locationId) {
+	public boolean isAuthorized(@RequestParam(name="badgeId") Long badgeId,@RequestParam(name="locationId") long locationId) {
 		return badgeService.isAuthorized(badgeId, locationId);
 	}
 }

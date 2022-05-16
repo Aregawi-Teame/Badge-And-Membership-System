@@ -23,7 +23,7 @@ public class Plan {
     private int qouta;
     @ManyToMany
     @JoinTable(name="Plan_Location",
-            joinColumns = {@JoinColumn(name="Pla=n_id")},
+            joinColumns = {@JoinColumn(name="Plan_id")},
             inverseJoinColumns = {@JoinColumn(name="Location_id")}
     )
     private Set<Location> locations;
@@ -51,7 +51,8 @@ public class Plan {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", isLimited=" + isLimited +
-                ", limit=" + qouta +
+                ", qouta=" + qouta +
+                ", locations=" + locations +
                 ", roles=" + roles +
                 '}';
     }
@@ -61,11 +62,11 @@ public class Plan {
         if (this == o) return true;
         if (!(o instanceof Plan)) return false;
         Plan plan = (Plan) o;
-        return getId() == plan.getId() && isLimited() == plan.isLimited() && getQouta() == plan.getQouta() && getName().equals(plan.getName()) && getDescription().equals(plan.getDescription()) && getRoles().equals(plan.getRoles());
+        return getId() == plan.getId() && isLimited() == plan.isLimited() && getQouta() == plan.getQouta() && getName().equals(plan.getName()) && Objects.equals(getDescription(), plan.getDescription()) && getLocations().equals(plan.getLocations()) && getRoles().equals(plan.getRoles());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getDescription(), isLimited(), getQouta(), getRoles());
+        return Objects.hash(getId(), getName(), getDescription(), isLimited(), getQouta(), getLocations(), getRoles());
     }
 }

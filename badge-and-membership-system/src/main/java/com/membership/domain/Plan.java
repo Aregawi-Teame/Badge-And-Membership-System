@@ -20,7 +20,7 @@ public class Plan {
     private String name;
     private String description;
     private boolean isLimited;
-    private int qouta;
+    private int quota;
     @ManyToMany
     @JoinTable(name="Plan_Location",
             joinColumns = {@JoinColumn(name="Plan_id")},
@@ -34,12 +34,12 @@ public class Plan {
     )
     private Set<Role> roles;
 
-    public Plan(int id, String name, String description, boolean isLimited, int qouta, Set<Location> locations, Set<Role> roles) {
+    public Plan(int id, String name, String description, boolean isLimited, int quota, Set<Location> locations, Set<Role> roles) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.isLimited = isLimited;
-        this.qouta = qouta;
+        this.quota = quota;
         this.locations = locations;
         this.roles = roles;
     }
@@ -51,7 +51,7 @@ public class Plan {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", isLimited=" + isLimited +
-                ", qouta=" + qouta +
+                ", quota=" + quota +
                 ", locations=" + locations +
                 ", roles=" + roles +
                 '}';
@@ -62,11 +62,11 @@ public class Plan {
         if (this == o) return true;
         if (!(o instanceof Plan)) return false;
         Plan plan = (Plan) o;
-        return getId() == plan.getId() && isLimited() == plan.isLimited() && getQouta() == plan.getQouta() && getName().equals(plan.getName()) && Objects.equals(getDescription(), plan.getDescription()) && getLocations().equals(plan.getLocations()) && getRoles().equals(plan.getRoles());
+        return getId() == plan.getId() && isLimited() == plan.isLimited() && getQuota() == plan.getQuota() && getName().equals(plan.getName()) && Objects.equals(getDescription(), plan.getDescription()) && getLocations().equals(plan.getLocations()) && getRoles().equals(plan.getRoles());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getDescription(), isLimited(), getQouta(), getLocations(), getRoles());
+        return Objects.hash(getId(), getName(), getDescription(), isLimited(), getQuota(), getLocations(), getRoles());
     }
 }

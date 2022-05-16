@@ -71,7 +71,7 @@ public class BadgeServiceImpl implements BadgeService {
 		if(membership.getEndDate().isBefore(LocalDate.now())) return false; //Membersip is expired
 		Location location = (Location)objects.get(4); // or this can be location of the machine reader
 		Integer dayOfTheWeek =  LocalDate.now().getDayOfWeek().getValue();
-		List<TimeSlot> dayTimeSlot = location.getTimeSlots().stream().filter(s-> s.getDayOfWeek().getDayofTheWeek()==dayOfTheWeek).toList();
+		List<TimeSlot> dayTimeSlot = location.getTimeSlots().stream().filter(s-> s.getDayOfWeek().valueOfTheDay()==dayOfTheWeek).toList();
 		TimeSlot timeSlot = dayTimeSlot.stream()
 										.filter(s->s.getStartTime()
 											.isAfter(LocalTime.now()) && s.getEndTime()
@@ -79,8 +79,8 @@ public class BadgeServiceImpl implements BadgeService {
 										.findFirst()
 										.get();
 		if(timeSlot==null) return false; // this means out of time or not opened yet;
-		//timeSlot.getLocationType()
-//		List<TimeSlot> timeSlots = timeSlotRepository.findByDayOfTheWeek(dayOfTheWeek);
+		
+		
 		if(!allowedRoleFoundInMember(member, plan)) return false;
 		
 		

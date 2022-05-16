@@ -26,7 +26,6 @@ public class Transaction {
     private Membership membership;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
     private Member member;
 
 

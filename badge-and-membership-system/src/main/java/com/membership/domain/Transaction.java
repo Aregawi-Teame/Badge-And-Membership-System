@@ -28,5 +28,7 @@ public class Transaction {
     @ManyToOne
     private Member member;
 
+    private boolean isSuccessful;
+
 
 }

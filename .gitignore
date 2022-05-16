@@ -1,7 +1,13 @@
 /.metadata/
+<<<<<<< Updated upstream
 .idea/
 *.iws/
 *.iml/
 *.ipr/
 *.properties/
 *.gitignore/
+=======
+badge-and-membership-system/pom.xml
+badge-and-membership-system/src/main/resources/application.properties
+bin/application.properties
+>>>>>>> Stashed changes

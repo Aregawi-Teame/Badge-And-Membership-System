@@ -30,7 +30,7 @@ public class PlanServiceImpl implements PlanService{
     }
 
     @Override
-    public Plan update(Plan plan) {
+    public Plan update(int id, Plan plan) {
         return planRepository.save(plan);
     }
 

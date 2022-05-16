@@ -1,1 +1,7 @@
 /.metadata/
+.idea/
+*.iws/
+*.iml/
+*.ipr/
+*.properties/
+*.gitignore/

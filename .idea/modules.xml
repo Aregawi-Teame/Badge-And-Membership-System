@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Badge-And-Membership-System.iml" filepath="$PROJECT_DIR$/Badge-And-Membership-System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/badge-and-membership-system/badge-and-membership-system.iml" filepath="$PROJECT_DIR$/badge-and-membership-system/badge-and-membership-system.iml" />
     </modules>
   </component>
 </project>

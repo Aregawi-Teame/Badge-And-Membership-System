@@ -98,7 +98,6 @@ public class BadgeServiceImpl implements BadgeService {
 		if (timeSlot == null)
 			return false; // this means out of time or not opened yet;
 
-		LocationTypeEnum locationTypeEnum = timeSlot.getLocationType();
 		if (!allowedRoleFoundInMember(member, plan))
 			return false;
 

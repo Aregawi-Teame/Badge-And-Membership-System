@@ -27,8 +27,8 @@ public class TimeSlot {
     @Enumerated(EnumType.STRING)
     private DayType dayOfWeek;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "location_type")
-    private LocationTypeEnum locationType;
+    @ManyToOne()
+    @JoinColumn(name="activity_type_id")
+    private ActivityType activityType;
 
 }

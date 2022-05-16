@@ -79,8 +79,8 @@ public class BadgeServiceImpl implements BadgeService {
 										.findFirst()
 										.get();
 		if(timeSlot==null) return false; // this means out of time or not opened yet;
-		//timeSlot.getLocationType()
-//		List<TimeSlot> timeSlots = timeSlotRepository.findByDayOfTheWeek(dayOfTheWeek);
+		
+		
 		if(!allowedRoleFoundInMember(member, plan)) return false;
 		
 		

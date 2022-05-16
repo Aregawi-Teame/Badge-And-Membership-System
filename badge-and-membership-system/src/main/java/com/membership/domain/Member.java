@@ -47,7 +47,7 @@ public class Member {
 									inverseJoinColumns = {@JoinColumn(name="role_id")})
 	private Set<Role> roles;
 	
-	
+	@OneToMany
 	@JoinTable(name = "member_membership", joinColumns = {@JoinColumn(name="member_id")},
 									inverseJoinColumns = {@JoinColumn(name="membership_id")})
 	private Set<Membership> memberships;

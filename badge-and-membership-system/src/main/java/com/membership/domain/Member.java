@@ -52,6 +52,10 @@ public class Member {
 									inverseJoinColumns = {@JoinColumn(name="membership_id")})
 	private Set<Membership> memberships;
 	
+	@JoinTable(name = "member_transaction", joinColumns = {@JoinColumn(name="member_id")},
+			inverseJoinColumns = {@JoinColumn(name="transaction_id")})
+	private Set<Transaction> transactions;
+	
 	public Member(String firstName, String lastName, String email, Set<Role> roles) {
 		super();
 		this.firstName = firstName;
@@ -67,6 +71,15 @@ public class Member {
 		this.badges.add(badge);
 		badge.setMember(this);
 	}
+	
+	public void addTransaction(Transaction transaction) {
+		this.transactions.add(transaction);
+	}
+	
+	public void addMemebrship(Membership membership) {
+		this.memberships.add(membership);
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(firstName, id, lastName);

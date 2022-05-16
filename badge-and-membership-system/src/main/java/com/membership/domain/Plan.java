@@ -36,7 +36,6 @@ public class Plan {
         this.qouta = limit;
         this.roles = roles;
     }
-    public Plan() { }
     @Override
     public String toString() {
         return "Plan{" +

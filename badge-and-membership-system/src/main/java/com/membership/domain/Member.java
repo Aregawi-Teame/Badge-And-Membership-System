@@ -47,6 +47,11 @@ public class Member {
 									inverseJoinColumns = {@JoinColumn(name="role_id")})
 	private Set<Role> roles;
 	
+	@OneToMany()
+	@JoinTable(name = "member_membership", joinColumns = {@JoinColumn(name="member_id")},
+									inverseJoinColumns = {@JoinColumn(name="membership_id")})
+	private Set<Membership> memberships;
+	
 	public Member(String firstName, String lastName, String email, Set<Role> roles) {
 		super();
 		this.firstName = firstName;
@@ -54,7 +59,7 @@ public class Member {
 		this.email = email;
 		this.roles = roles;
 	}
-	public Member() { }
+	
 	public void addRole(Role role) {
 		this.roles.add(role);
 	}

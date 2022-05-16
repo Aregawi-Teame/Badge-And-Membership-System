@@ -48,7 +48,6 @@ public class Membership
 		this.plan = plan;
 		this.transactions = transactions;
 	}
-	public Membership() { }
 	public Long getId() 
 	{
 		return id;

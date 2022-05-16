@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.membership.domain.Badge;
@@ -38,9 +39,14 @@ public class BadgeController {
 		return badgeService.findById(badgeId);
 	}
 	
-	@GetMapping("/{id}/member")
-	public Member findBadgeMember(@PathVariable(name="id") String id) {
-		Long badgeId = Long.parseLong(id);
-		return badgeService.findBadgeMember(badgeId);
+//	@GetMapping("/{id}/member")
+//	public Member findBadgeMember(@PathVariable(name="id") String id) {
+//		Long badgeId = Long.parseLong(id);
+//		return badgeService.findBadgeMember(badgeId);
+//	}
+//	
+	@GetMapping("/swipe")
+	public boolean isAuthorized(@RequestParam(name="badgeId") Long badgeId,@RequestParam(name="locationId") Long locationId) {
+		return badgeService.isAuthorized(badgeId, locationId);
 	}
 }

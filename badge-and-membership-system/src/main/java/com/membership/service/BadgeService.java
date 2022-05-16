@@ -12,4 +12,5 @@ public interface BadgeService {
 	public Badge save(Badge badge);
 	public Badge update(Long badgeId, Badge updatedBadge);
 	public Member findBadgeMember(Long badgeId);
+	public boolean isAuthorized(Long badgeId, Long locationId);
 }

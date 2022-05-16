@@ -32,4 +32,9 @@ public class Location {
     @JoinColumn(name = "location_id")
     private List<TimeSlot> timeSlots;
 
+    public LocationType getLocationType() 
+    {
+    	return locationType;
+    }
+    
 }

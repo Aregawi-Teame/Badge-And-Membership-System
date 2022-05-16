@@ -54,7 +54,7 @@ public class Member {
 		this.email = email;
 		this.roles = roles;
 	}
-	
+	public Member() { }
 	public void addRole(Role role) {
 		this.roles.add(role);
 	}

@@ -11,3 +11,6 @@ badge-and-membership-system/pom.xml
 badge-and-membership-system/src/main/resources/application.properties
 bin/application.properties
 >>>>>>> Stashed changes
+badge-and-membership-system/target/classes/application.properties
+badge-and-membership-system/src/main/resources/application.properties
+bin/application.properties

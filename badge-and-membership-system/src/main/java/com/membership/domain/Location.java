@@ -25,16 +25,12 @@ public class Location {
 
     private int capacity;
 
-    @Enumerated(EnumType.STRING)
-    private LocationType locationType;
+
 
     @OneToMany
     @JoinColumn(name = "location_id")
     private List<TimeSlot> timeSlots;
 
-    public LocationType getLocationType() 
-    {
-    	return locationType;
-    }
+
     
 }

@@ -22,12 +22,12 @@ public class Transaction {
     private LocalDate dateTime;
 
     @ManyToOne
-    @JoinColumn(name = "location_id")
-    private Location location;
-
-    @ManyToOne
     @JoinColumn(name = "transacion_id")
     private Membership membership;
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
 
 }

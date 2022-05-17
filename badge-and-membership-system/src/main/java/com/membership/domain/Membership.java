@@ -28,9 +28,7 @@ public class Membership
 	private Long id;
 	private LocalDate startDate;
 	private LocalDate endDate;    
-	@ManyToOne
-	@JoinColumn(name = "member_id")
-	private Member member;
+
 	@ManyToOne
 	@JoinColumn(name = "plan_id")
 	private Plan plan;
@@ -39,12 +37,11 @@ public class Membership
 	private Location location;
 	@OneToMany(mappedBy = "membership")
 	private List<Transaction> transactions = new ArrayList<Transaction>();	
-	public Membership(LocalDate startDate, LocalDate endDate, Member member, Plan plan, Location location, List<Transaction> transactions) 
+	public Membership(LocalDate startDate, LocalDate endDate, Plan plan, Location location, List<Transaction> transactions)
 	{
 		super();
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.member = member;
 		this.plan = plan;
 		this.transactions = transactions;
 	}
@@ -60,14 +57,7 @@ public class Membership
 	{
 		return endDate;
 	}
-	public Member getMember() 
-	{
-		return member;
-	}
-	public void setMember(Member member) 
-	{
-		this.member = member;
-	}
+	
 	public Location getLocation() 
 	{
 		return location;

@@ -43,11 +43,7 @@ public class MembershipController
 		return membershipService.findById(Long.parseLong(id));
 	}
 	
-	@GetMapping("/{id}/member")
-	public Member findMemberById(@PathVariable(name="id") String id) 
-	{
-		return membershipService.findById(Long.parseLong(id)).getMember();
-	}
+
 
 	@GetMapping("/{id}/plan")
 	public Plan findPlanById(@PathVariable(name="id") String id) 
@@ -69,10 +65,5 @@ public class MembershipController
 		return membershipService.findById(Long.parseLong(id)).getTransactions();
 	}
 	
-	@PostMapping
-	public Membership save(String memberId, @RequestBody Membership membership)
-	{
-		membership.setMember(memberRepository.findById(Long.parseLong(memberId)).get());
-		return membershipService.save(membership);
-	}
+
 }

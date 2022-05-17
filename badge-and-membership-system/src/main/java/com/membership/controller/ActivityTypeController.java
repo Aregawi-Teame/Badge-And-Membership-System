@@ -26,4 +26,12 @@ public class ActivityTypeController {
     public ActivityType addActivityType(@RequestBody ActivityType activityType){
         return activityTypeService.save(activityType);
     }
+    @PutMapping(value = "/{id}")
+    public ActivityType updateActivityTypeById(@RequestBody ActivityType activityType, @PathVariable long id){
+        return activityTypeService.update(activityType, id);
+    }
+    @DeleteMapping(value = "/{id}")
+    public void deleteActivityTypeById(@PathVariable long id){
+        activityTypeService.delete(id);
+    }
 }

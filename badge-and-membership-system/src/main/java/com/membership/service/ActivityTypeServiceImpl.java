@@ -27,4 +27,25 @@ public class ActivityTypeServiceImpl implements ActivityTypeService{
     public List<ActivityType> findAll() {
         return activityTypeRepository.findAll();
     }
+
+    @Override
+    public ActivityType update(ActivityType activityType, long id) {
+        if(activityTypeRepository.findById(id).isPresent()){
+         ActivityType existingType = activityTypeRepository.findById(id).get();
+         if(activityType.getActivityName()!=null){
+             existingType.setActivityName(activityType.getActivityName());
+         }
+         return activityTypeRepository.save(existingType);
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public void delete(long id) {
+        if(activityTypeRepository.findById(id).isPresent()){
+            ActivityType activityType = activityTypeRepository.findById(id).get();
+            activityTypeRepository.delete(activityType);
+        }
+    }
 }

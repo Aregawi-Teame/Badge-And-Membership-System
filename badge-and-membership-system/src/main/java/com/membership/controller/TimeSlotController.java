@@ -27,4 +27,12 @@ public class TimeSlotController {
     public TimeSlot saveByLocation(@RequestBody TimeSlot timeSlot, @RequestParam(name = "locationId") long locationId){
         return timeSlotService.save(timeSlot, locationId);
     }
+    @PutMapping(value = "/{id}")
+    public TimeSlot updateById(@RequestBody TimeSlot timeSlot, @PathVariable long id){
+        return timeSlotService.update(timeSlot, id);
+    }
+    @DeleteMapping(value = "/{id}")
+    public void deleteById(@PathVariable long id){
+        timeSlotService.deleteById(id);
+    }
 }

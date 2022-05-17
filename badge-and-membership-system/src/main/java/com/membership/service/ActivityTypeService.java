@@ -8,4 +8,6 @@ public interface ActivityTypeService {
     public ActivityType save(ActivityType activityType);
     public ActivityType findById(long id);
     public List<ActivityType> findAll();
+    public ActivityType update(ActivityType activityType, long id);
+    public void delete(long id);
 }

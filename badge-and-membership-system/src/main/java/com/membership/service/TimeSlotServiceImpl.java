@@ -33,4 +33,35 @@ public class TimeSlotServiceImpl implements TimeSlotService{
         return timeSlotRepository.save(timeSlot);
     }
 
+    @Override
+    public TimeSlot update(TimeSlot timeslot, long id) {
+        if (timeSlotRepository.findById(id).isPresent()){
+            TimeSlot existingTimeSlot = timeSlotRepository.findById(id).get();
+
+            if(timeslot.getStartTime()!=null) {
+                existingTimeSlot.setStartTime(timeslot.getStartTime());
+            }
+            if(timeslot.getEndTime()!=null) {
+                existingTimeSlot.setEndTime(timeslot.getEndTime());
+            }
+            if(timeslot.getDayOfWeek()!=null){
+                existingTimeSlot.setDayOfWeek(timeslot.getDayOfWeek());
+            }
+            if(timeslot.getActivityType()!=null){
+                existingTimeSlot.setActivityType(timeslot.getActivityType());
+            }
+
+            return timeSlotRepository.save(existingTimeSlot);
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public void deleteById(long id) {
+        TimeSlot ts = timeSlotRepository.getById(id);
+        timeSlotRepository.delete(ts);
+    }
+
+
 }

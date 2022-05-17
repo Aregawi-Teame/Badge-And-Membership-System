@@ -20,7 +20,7 @@ public class PlanServiceImpl implements PlanService{
     }
 
     @Override
-    public Plan findById(int id) {
+    public Plan findById(Long id) {
         return planRepository.getById(id);
     }
 
@@ -30,12 +30,17 @@ public class PlanServiceImpl implements PlanService{
     }
 
     @Override
-    public Plan update(int id, Plan plan) {
-        return planRepository.save(plan);
+    public Plan update(Plan plan, Long id) {
+        Plan existingPlan = findById(id);
+        Plan updateResponse = null;
+        if(existingPlan != null){
+            updateResponse = planRepository.save(plan);
+        }
+        return updateResponse;
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(Long id) {
         planRepository.deleteById(id);
     }
 }

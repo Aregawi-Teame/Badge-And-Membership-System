@@ -1,16 +1,15 @@
 package com.membership.service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import com.membership.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.membership.domain.Badge;
-import com.membership.domain.Member;
-import com.membership.domain.Membership;
-import com.membership.domain.Role;
 import com.membership.repository.MemberRepository;
 
 @Service
@@ -80,6 +79,18 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public Set<Membership> findAllMemberMemberships(Long memberId) {
 		return findById(memberId).getMemberships();
+	}
+
+	//CRUD Req.No.8 - For a member, return a list all plans
+	@Override
+	public  List<Plan> findAllMemberPlans(Long memberId){
+		List<Plan> listOfPlans = new ArrayList<Plan>();
+		Set<Membership> memberMemberships = findAllMemberMemberships(memberId);
+		Iterator<Membership> iterator = memberMemberships.iterator();
+		while(iterator.hasNext()){
+			listOfPlans.add(iterator.next().getPlan());
+		}
+		return listOfPlans;
 	}
 
 }

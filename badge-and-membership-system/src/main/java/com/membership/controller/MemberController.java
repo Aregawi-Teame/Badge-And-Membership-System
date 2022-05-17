@@ -3,6 +3,7 @@ package com.membership.controller;
 import java.util.List;
 import java.util.Set;
 
+import com.membership.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -13,10 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.membership.domain.Badge;
-import com.membership.domain.Member;
-import com.membership.domain.Membership;
-import com.membership.domain.Role;
 import com.membership.service.MemberService;
 
 @RestController
@@ -78,4 +75,11 @@ public class MemberController {
 	public Set<Membership> findAllMemberMemberships(@PathVariable(name="memberId") Long memberId) {
 		return memberService.findAllMemberMemberships(memberId);
 	}
+
+	//Return a list of a member's plans
+	@GetMapping("/{memberId}/plans")
+	public List<Plan> getAllMemberPlans(@PathVariable(name = "memberId") Long memberId){
+		return memberService.findAllMemberPlans(memberId);
+	}
+
 }

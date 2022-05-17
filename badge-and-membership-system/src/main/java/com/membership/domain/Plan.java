@@ -16,7 +16,7 @@ public class Plan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
     private String description;
     private boolean isLimited;
@@ -34,7 +34,7 @@ public class Plan {
     )
     private Set<Role> roles;
 
-    public Plan(int id, String name, String description, boolean isLimited, int quota, Set<Location> locations, Set<Role> roles) {
+    public Plan(Long id, String name, String description, boolean isLimited, int quota, Set<Location> locations, Set<Role> roles) {
         this.id = id;
         this.name = name;
         this.description = description;

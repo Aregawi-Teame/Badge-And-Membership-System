@@ -27,7 +27,7 @@ public class TimeSlot {
     @Enumerated(EnumType.STRING)
     private DayType dayOfWeek;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name="activity_type_id")
     private ActivityType activityType;
 

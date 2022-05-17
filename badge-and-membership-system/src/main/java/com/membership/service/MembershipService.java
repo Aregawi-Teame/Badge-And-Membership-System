@@ -17,6 +17,8 @@ public interface MembershipService
 	public List<Transaction> getTransactionsByMembershipId(Long membershipId);
 	public Plan getPlan(Membership membership);
 	public Plan getPlanByMembershipId(Long membershipId);
+	public Member getMember(Membership membership);
+	public Member getMemberByMembershipId(Long membershipId);
 	public Location getLocation(Membership membership);
 	public Location getLocationByMembershipId(Long membershipId);
 }

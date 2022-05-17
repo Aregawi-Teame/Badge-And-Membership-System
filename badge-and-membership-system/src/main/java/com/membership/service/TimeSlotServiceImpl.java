@@ -63,5 +63,10 @@ public class TimeSlotServiceImpl implements TimeSlotService{
         timeSlotRepository.delete(ts);
     }
 
+    @Override
+    public TimeSlot addNew(TimeSlot timeSlot) {
+        return timeSlotRepository.save(timeSlot);
+    }
+
 
 }

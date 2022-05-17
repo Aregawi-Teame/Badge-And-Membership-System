@@ -23,9 +23,13 @@ public class TimeSlotController {
         return timeSlotService.findById(id);
     }
 
-    @PostMapping
+    @PostMapping("/location/{locationId}")
     public TimeSlot saveByLocation(@RequestBody TimeSlot timeSlot, @RequestParam(name = "locationId") long locationId){
         return timeSlotService.save(timeSlot, locationId);
+    }
+    @PostMapping
+    public TimeSlot addNewTimeSlot(@RequestBody TimeSlot timeSlot){
+        return timeSlotService.addNew(timeSlot);
     }
     @PutMapping(value = "/{id}")
     public TimeSlot updateById(@RequestBody TimeSlot timeSlot, @PathVariable long id){

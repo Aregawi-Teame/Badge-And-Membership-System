@@ -62,6 +62,11 @@ public class BadgeServiceImpl implements BadgeService {
 	}
 
 	@Override
+	public void deleteById(Long id) {
+		badgeRepository.deleteById(id);
+	}
+
+	@Override
 	public Member findBadgeMember(Long badgeId) {
 		return findById(badgeId).getMember();
 	}

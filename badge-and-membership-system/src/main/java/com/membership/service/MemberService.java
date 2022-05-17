@@ -3,12 +3,8 @@ package com.membership.service;
 import java.util.List;
 import java.util.Set;
 
+import com.membership.domain.*;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import com.membership.domain.Badge;
-import com.membership.domain.Member;
-import com.membership.domain.Membership;
-import com.membership.domain.Role;
 
 public interface MemberService {
 	public List<Member> findAll();
@@ -21,4 +17,5 @@ public interface MemberService {
 	public Member updateMember(Long memberId, Member updatedMember);
 	public Member addMembership(Long memberId, Membership membership);
 	public Set<Membership> findAllMemberMemberships(Long memberId);
+	public List<Plan> findAllMemberPlans(Long memberId);
 }

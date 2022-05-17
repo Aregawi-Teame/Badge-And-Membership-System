@@ -19,7 +19,7 @@ public class PlanController {
     }
 
     @GetMapping("/{id}")
-    public Plan getAPlan(@PathVariable(name = "id") int id){
+    public Plan getAPlan(@PathVariable(name = "id") Long id){
         return planService.findById(id);
     }
 
@@ -27,13 +27,14 @@ public class PlanController {
     public Plan addAPlan(@RequestBody Plan plan){
         return planService.save(plan);
     }
+
     @PutMapping("/{id}")
-    public Plan updateAPlan(@PathVariable(name = "id") int id, @RequestBody Plan plan){
-        return planService.update(id, plan);
+    public Plan updateAPlan(@RequestBody Plan plan, @PathVariable(name = "id") Long id){
+        return planService.update(plan, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteARole(@PathVariable(name = "id") int id){
+    public void deleteAPlan(@PathVariable(name = "id") Long id){
         planService.deleteById(id);
     }
 

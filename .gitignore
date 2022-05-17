@@ -14,3 +14,4 @@ bin/application.properties
 badge-and-membership-system/target/classes/application.properties
 badge-and-membership-system/src/main/resources/application.properties
 bin/application.properties
+*.properties

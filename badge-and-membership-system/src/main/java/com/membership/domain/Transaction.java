@@ -22,11 +22,15 @@ public class Transaction {
     private LocalDate dateTime;
 
     @ManyToOne
-    @JoinColumn(name = "transacion_id")
+    @JoinColumn(name = "membership_id")
     private Membership membership;
 
     @ManyToOne
     private Member member;
+
+    @ManyToOne
+    @JoinColumn(name = "activity_type_id")
+    private ActivityType activityType;
 
     private boolean isSuccessful;
 

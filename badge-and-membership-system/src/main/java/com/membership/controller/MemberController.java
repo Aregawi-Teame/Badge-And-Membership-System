@@ -82,4 +82,9 @@ public class MemberController {
 		return memberService.findAllMemberPlans(memberId);
 	}
 
+	@GetMapping("/{memberId}/transactions")
+	public Set<Transaction> getAllMemberTransactions(@PathVariable(name = "memberId") Long memberId){
+		return memberService.findAllMemberTransactions(memberId);
+	}
+
 }

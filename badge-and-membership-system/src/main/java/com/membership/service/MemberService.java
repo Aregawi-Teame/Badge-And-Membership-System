@@ -18,4 +18,5 @@ public interface MemberService {
 	public Member addMembership(Long memberId, Membership membership);
 	public Set<Membership> findAllMemberMemberships(Long memberId);
 	public List<Plan> findAllMemberPlans(Long memberId);
+	public Set<Transaction> findAllMemberTransactions(Long memberId);
 }

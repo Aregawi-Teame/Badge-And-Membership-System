@@ -1,8 +1,6 @@
 package com.membership.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,17 +9,18 @@ import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-@Getter
-@Setter
+//@Getter
+//@Setter
 @NoArgsConstructor
+//@AllArgsConstructor
+@Data
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
     private String name;
 
-    public Role(int id, String name) {
-        this.id = id;
+    public Role(String name) {
         this.name = name;
     }
 

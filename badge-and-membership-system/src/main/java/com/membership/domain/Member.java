@@ -16,6 +16,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,7 +42,8 @@ public class Member {
 	@JoinTable(name = "member_badge", joinColumns = {@JoinColumn(name="member_id")},
 									inverseJoinColumns = {@JoinColumn(name="badge_id")})	
 	private Set<Badge> badges;
-	
+
+	@NotNull
 	@OneToMany()
 	@JoinTable(name = "member_role", joinColumns = {@JoinColumn(name="member_id")},
 									inverseJoinColumns = {@JoinColumn(name="role_id")})

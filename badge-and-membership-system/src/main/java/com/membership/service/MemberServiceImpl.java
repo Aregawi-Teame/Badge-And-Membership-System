@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.membership.domain.Badge;
 import com.membership.domain.Member;
+import com.membership.domain.Membership;
 import com.membership.domain.Role;
 import com.membership.repository.MemberRepository;
 
@@ -67,6 +68,18 @@ public class MemberServiceImpl implements MemberService{
 		if(updatedMember.getLastName()!=null) member.setLastName(updatedMember.getLastName());
 		if(updatedMember.getEmail()!=null) member.setEmail(updatedMember.getEmail());
 		return save(member);
+	}
+
+	@Override
+	public Member addMembership(Long memberId, Membership membership) {
+		Member member = findById(memberId);
+		member.addMemebrship(membership);
+		return save(member);
+	}
+
+	@Override
+	public Set<Membership> findAllMemberMemberships(Long memberId) {
+		return findById(memberId).getMemberships();
 	}
 
 }

@@ -84,7 +84,6 @@ public class BadgeServiceImpl implements BadgeService {
 
 		Plan plan = membership.getPlan();
 		Location location = membership.getLocation();
-
 		Integer dayOfTheWeek = LocalDate.now().getDayOfWeek().getValue();
 		List<TimeSlot> dayTimeSlot = location.getTimeSlots()
 				.stream()

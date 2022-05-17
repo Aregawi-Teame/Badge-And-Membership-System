@@ -1,5 +1,8 @@
 package com.membership.controller;
 import java.util.List;
+
+import com.membership.service.MemberService;
+import com.membership.service.MembershipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -7,16 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.membership.domain.Badge;
 import com.membership.domain.Location;
 import com.membership.domain.Member;
 import com.membership.domain.Membership;
 import com.membership.domain.Plan;
 import com.membership.domain.Transaction;
 import com.membership.repository.MemberRepository;
-import com.membership.service.MemberService;
-import com.membership.service.MembershipService;
 
 @RestController
 @RequestMapping("/api/memberships")

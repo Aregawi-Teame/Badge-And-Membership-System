@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.membership.domain.Badge;
 import com.membership.domain.Member;
+import com.membership.domain.Membership;
 import com.membership.domain.Role;
 import com.membership.service.MemberService;
 
@@ -68,4 +69,13 @@ public class MemberController {
 		return memberService.updateMember(memberId, updatedMember);
 	}
 	
+	@PatchMapping("/{memberId}/memberships")
+	public Member addMembership(@PathVariable(name="memberId") Long memberId, @RequestBody Membership membership) {
+		return memberService.addMembership(memberId, membership);
+	}
+	
+	@GetMapping("/{memberId}/memberships")
+	public Set<Membership> findAllMemberMemberships(@PathVariable(name="memberId") Long memberId) {
+		return memberService.findAllMemberMemberships(memberId);
+	}
 }

@@ -12,5 +12,5 @@ public interface PlanService {
     public Plan save(Plan plan);
     public Plan update(Plan plan, Long id);
     public void deleteById(Long id);
-    public Set<Location> findAllPlanLocations(Long id);
+    public Set<Location> getAllPlanLocations(Long id);
 }

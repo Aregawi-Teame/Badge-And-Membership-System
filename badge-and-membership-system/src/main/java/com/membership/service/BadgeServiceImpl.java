@@ -3,6 +3,7 @@ package com.membership.service;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.membership.domain.Badge;
 import com.membership.domain.Location;
-import com.membership.domain.LocationTypeEnum;
 import com.membership.domain.Member;
 import com.membership.domain.Membership;
 import com.membership.domain.Plan;
@@ -31,6 +31,8 @@ public class BadgeServiceImpl implements BadgeService {
 	private TimeSlotRepository timeSlotRepository;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private TransactionService transactionService;
 
 	@Override
 	public List<Badge> findAll() {
@@ -76,9 +78,9 @@ public class BadgeServiceImpl implements BadgeService {
 		Badge badge = findById(badgeId);
 		Member member = badge.getMember();
 		Membership membership = member.getMemberships().stream()
-				.filter(membersh -> membersh.getLocation().getLocationId() == locationId)
+				.filter(membersh -> membersh.getLocation().getId() == locationId)
 				.findFirst()
-				.get();
+				.orElse(null);
 
 		if (badge == null || member == null || membership == null)
 			return false; // Not authorized
@@ -96,31 +98,34 @@ public class BadgeServiceImpl implements BadgeService {
 				.toList();
 
 		LocalTime currentTime = LocalTime.now();
-		TimeSlot timeSlot = dayTimeSlot.stream()
-				.filter(s -> s.getStartTime().isAfter(currentTime) && s.getEndTime().isBefore(currentTime)).findFirst()
-				.get();
-		if (timeSlot == null)
+		Optional<TimeSlot> timeSlot = dayTimeSlot.stream()
+				.filter(s -> s.getStartTime().isBefore(currentTime) && s.getEndTime().isAfter(currentTime)).findFirst();
+		if (!timeSlot.isPresent())
 			return false; // this means out of time or not opened yet;
 
 		if (!allowedRoleFoundInMember(member, plan))
 			return false;
 
 		if (plan.isLimited()) {
-			long successfullTransactionsCount = membership.getTransactions().stream()
+			long successfulTransactionsCount = membership.getTransactions().stream()
 					.filter(t -> t.getDateTime().getMonthValue() == LocalDate.now().getMonthValue())
 					.filter(t -> t.getDateTime().getYear() == LocalDate.now().getYear()).filter(t -> t.isSuccessful())
 					.count();
 
-			if (plan.getQuota() <= successfullTransactionsCount)
+			if (plan.getQuota() <= successfulTransactionsCount)
 				return false;// quota overflowed
 		}
 
 		Transaction transaction = new Transaction();
 		transaction.setSuccessful(true);
 		transaction.setDateTime(LocalDate.now());
+//		transaction.setMember(member);
+//		transaction.setMembership(membership);
+		transaction.setActivityType(timeSlot.get().getActivityType());
 		membership.addTransaction(transaction);
 		member.addTransaction(transaction);
-		memberService.save(member);
+//		memberService.save(member);
+		transactionService.save(transaction);
 
 		return true;
 	}

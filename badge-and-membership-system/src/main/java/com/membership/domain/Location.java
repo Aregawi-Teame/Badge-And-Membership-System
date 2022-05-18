@@ -17,7 +17,7 @@ public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long locationId;
+    private long id;
 
     private String name;
 
@@ -27,7 +27,7 @@ public class Location {
 
 
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "location_id")
     private List<TimeSlot> timeSlots;
 

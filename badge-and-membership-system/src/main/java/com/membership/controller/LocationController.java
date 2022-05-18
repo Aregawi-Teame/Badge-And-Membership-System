@@ -1,6 +1,7 @@
 package com.membership.controller;
 
 import com.membership.domain.Location;
+import com.membership.domain.TimeSlot;
 import com.membership.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,5 +43,10 @@ public class LocationController {
     public String deleteLocation(@PathVariable(name = "id") long id){
         locationService.deleteById(id);
         return "Successfully deleted location.";
+    }
+
+    @PatchMapping("/{id}/timeslot")
+    public Location addTimeSlotForLocation(@PathVariable(name = "id") Long id, @RequestBody TimeSlot timeSlot){
+        return locationService.addTimeSlotForLocation(id, timeSlot);
     }
 }

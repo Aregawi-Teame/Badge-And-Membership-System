@@ -54,16 +54,7 @@ public class MembershipServiceImpl implements MembershipService
 	{
 		return membershipRepository.findById(membershipId).get().getPlan();
 	}
-	@Override
-	public Member getMember(Membership membership)
-	{
-		return membershipRepository.findById(membership.getId()).get().getMember();
-	}
-	@Override
-	public Member getMemberByMembershipId(Long membershipId)
-	{
-		return membershipRepository.findById(membershipId).get().getMember();
-	}	
+
 	@Override
 	public Location getLocation(Membership membership)
 	{
@@ -73,5 +64,19 @@ public class MembershipServiceImpl implements MembershipService
 	public Location getLocationByMembershipId(Long membershipId)
 	{
 		return membershipRepository.findById(membershipId).get().getLocation();
+	}
+
+	@Override
+	public Membership addLocation(Long id, Location location) {
+		Membership membership = findById(id);
+		membership.setLocation(location);
+		return membershipRepository.save(membership);
+	}
+
+	@Override
+	public Membership addPlanForMembership(Long id, Plan plan) {
+		Membership membership = findById(id);
+		membership.setPlan(plan);
+		return membershipRepository.save(membership);
 	}
 }

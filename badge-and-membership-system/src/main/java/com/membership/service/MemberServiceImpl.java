@@ -94,9 +94,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public Set<Transaction> findAllMemberTransactions(Long memberId) {
-		return memberRepository.getById(memberId).getTransactions();
+	public Set<Transaction> findAllMemberTransactions(Long id) {
+		return memberRepository.getById(id).getTransactions();
 	}
-
 
 }

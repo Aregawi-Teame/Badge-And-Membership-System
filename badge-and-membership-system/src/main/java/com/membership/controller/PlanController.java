@@ -40,9 +40,9 @@ public class PlanController {
         planService.deleteById(id);
     }
 
-    @GetMapping("/{id}/locations")
+    @PutMapping("/{id}/locations")
     public Set<Location> getAllPlanLocations(@PathVariable(name = "id") Long id){
-        return planService.findAllPlanLocations(id);
+        return planService.getAllPlanLocations(id);
     }
 
 }

@@ -47,7 +47,7 @@ public class PlanServiceImpl implements PlanService{
     }
 
     @Override
-    public Set<Location> findAllPlanLocations(Long id) {
+    public Set<Location> getAllPlanLocations(Long id) {
         return planRepository.getById(id).getLocations();
     }
 }

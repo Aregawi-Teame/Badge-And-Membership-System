@@ -29,15 +29,14 @@ public class Membership
 	@ManyToOne
 	@JoinColumn(name = "location_id")
 	private Location location;
-	@OneToMany(mappedBy = "membership")
-	private List<Transaction> transactions = new ArrayList<Transaction>();	
-	public Membership(LocalDate startDate, LocalDate endDate, Member member, Plan plan, Location location, List<Transaction> transactions) 
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Transaction> transactions = new ArrayList<Transaction>();
+	public Membership(LocalDate startDate, LocalDate endDate, Member member, Plan plan, Location location)
 	{
 		super();
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.plan = plan;
-		this.transactions = transactions;
 	}
 	public Long getId() 
 	{

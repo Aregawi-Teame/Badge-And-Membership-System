@@ -1,5 +1,6 @@
 package com.membership.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,12 +22,14 @@ public class Transaction {
 
     private LocalDate dateTime;
 
-    @ManyToOne
-    @JoinColumn(name = "membership_id")
-    private Membership membership;
-
-    @ManyToOne
-    private Member member;
+//    @JsonIgnore
+//    @ManyToOne(cascade = CascadeType.PERSIST)
+//    @JoinColumn(name = "membership_id")
+//    private Membership membership;
+//
+//    @JsonIgnore
+//    @ManyToOne(cascade = CascadeType.PERSIST)
+//    private Member member;
 
     @ManyToOne
     @JoinColumn(name = "activity_type_id")

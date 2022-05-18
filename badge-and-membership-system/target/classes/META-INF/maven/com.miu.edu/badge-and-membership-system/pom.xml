@@ -16,6 +16,10 @@
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>2021.0.2</spring-cloud.version>
+				
+	    <maven.compiler.target>16</maven.compiler.target>
+	    <maven.compiler.source>16</maven.compiler.source>
+				
 	</properties>
 	<dependencies>
 		<dependency>

@@ -93,4 +93,9 @@ public class MemberServiceImpl implements MemberService{
 		return listOfPlans;
 	}
 
+	@Override
+	public Set<Transaction> findAllMemberTransactions(Long id) {
+		return memberRepository.getById(id).getTransactions();
+	}
+
 }

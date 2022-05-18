@@ -1,6 +1,7 @@
 package com.membership.service;
 
 import com.membership.domain.Location;
+import com.membership.domain.TimeSlot;
 import com.membership.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,12 @@ public class LocationServiceImpl implements LocationService {
     @Override
     public void deleteById(long id) {
         locationRepository.deleteById(id);
+    }
+
+    @Override
+    public Location addTimeSlotForLocation(Long id, TimeSlot timeSlot) {
+        Location location = findById(id);
+        location.getTimeSlots().add(timeSlot);
+        return locationRepository.save(location);
     }
 }

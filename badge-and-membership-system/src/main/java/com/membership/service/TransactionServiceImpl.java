@@ -37,7 +37,7 @@ public class TransactionServiceImpl implements TransactionService{
 
     @Override
     public Transaction update(long id, Transaction transaction) {
-        transaction.setTransactionId(id);
+        transaction.setId(id);
         return transactionRepository.save(transaction);
     }
 

@@ -7,6 +7,8 @@ import com.membership.domain.Member;
 import com.membership.domain.Membership;
 import com.membership.domain.Plan;
 import com.membership.domain.Transaction;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 public interface MembershipService 
 {
@@ -17,8 +19,8 @@ public interface MembershipService
 	public List<Transaction> getTransactionsByMembershipId(Long membershipId);
 	public Plan getPlan(Membership membership);
 	public Plan getPlanByMembershipId(Long membershipId);
-	public Member getMember(Membership membership);
-	public Member getMemberByMembershipId(Long membershipId);
 	public Location getLocation(Membership membership);
 	public Location getLocationByMembershipId(Long membershipId);
+	public Membership addLocation(Long id, Location location);
+	public Membership addPlanForMembership( Long id,Plan plan);
 }
